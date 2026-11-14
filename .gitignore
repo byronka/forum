@@ -1,0 +1,13 @@
+# ignore the built stuff
+target/
+
+# don't want to commit any Intellij config files
+.idea
+*.iml
+
+# Don't want any of those Mac finder junk files scattered all over
+.DS_Store
+
+# This file is just a flag to show that the system is running.
+SYSTEM_RUNNING
+

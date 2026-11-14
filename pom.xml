@@ -1,0 +1,153 @@
+<project>
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.renomad</groupId>
+    <artifactId>forum</artifactId>
+    <version>1.0.0</version>
+    <description>A web forum</description>
+    <name>forum</name>
+
+    <!--
+      Minum requires a minimum of Java 21
+      for its virtual threads.
+    -->
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>25</maven.compiler.source>
+        <maven.compiler.target>25</maven.compiler.target>
+    </properties>
+
+    <dependencies>
+
+        <!--
+          This is the Minum web framework, find its
+          code at https://github.com/byronka/minum
+        -->
+        <dependency>
+            <groupId>com.renomad</groupId>
+            <artifactId>minum</artifactId>
+            <version>11.0.4</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <!--
+        Junit is an industry-standard test framework.
+        Version 4 is oriented to minimalism, which aligns
+        with the ethos of Minum.  Its site is https://junit.org/junit4/
+        -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- Lets us easily check that one object equals another, a valuable trait -->
+        <dependency>
+            <groupId>nl.jqno.equalsverifier</groupId>
+            <artifactId>equalsverifier-nodep</artifactId>
+            <version>4.2</version>
+            <scope>test</scope>
+        </dependency>
+
+    </dependencies>
+
+
+    <!-- Used to allow Maven to create Jar files -->
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.7.1</version>
+                <configuration>
+                    <descriptorRefs>
+                        <!-- Bundles all dependencies inside the JAR -->
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <!-- Defines the entry point of your application -->
+                            <mainClass>com.renomad.forum.Main</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <!-- Binds this plugin to the 'package' phase -->
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- Lets us use mutation testing -->
+            <plugin>
+                <groupId>org.pitest</groupId>
+                <artifactId>pitest-maven</artifactId>
+                <version>1.30.2</version>
+                <configuration>
+                    <threads>4</threads>
+                    <timeoutConstant>500</timeoutConstant>
+                </configuration>
+            </plugin>
+
+            <!-- Code coverage for Java -->
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.16</version>
+                <executions>
+                    <execution>
+                        <id>default-prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-report</id>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>default-check</id>
+                        <goals>
+                            <goal>check</goal>
+                        </goals>
+                        <configuration>
+                            <rules>
+                                <rule>
+                                    <element>BUNDLE</element>
+                                    <limits>
+                                        <limit>
+                                            <counter>COMPLEXITY</counter>
+                                            <value>COVEREDRATIO</value>
+                                            <minimum>0.60</minimum>
+                                        </limit>
+                                    </limits>
+                                </rule>
+                            </rules>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <!-- For building the Javadocs -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.12.0</version>
+                <configuration>
+                    <!-- Optional: prevents build failures on strict HTML tags in Java 8+ -->
+                    <doclint>none</doclint>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+</project>
