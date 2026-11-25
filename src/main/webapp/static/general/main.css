@@ -1,4 +1,94 @@
+/*
+Basic style for the page.
+ */
 body{
-    background: black;
+    background: #363535;
     color: white;
+}
+
+/*
+This section is to format the anchor elements (links) without relying on color.
+Easier for the color blind, but also avoids us needing to constantly update
+the link colors for any background.
+ */
+
+/* Default & Visited: Match surrounding text color with a clean underline */
+a,
+a:visited {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-color: currentColor;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+    transition: text-decoration-thickness 0.15s ease, text-underline-offset 0.15s ease;
+}
+
+/* Hover & Focus: Thicken the underline and shift it slightly for clear feedback */
+a:hover,
+a:focus-visible {
+    text-decoration-thickness: 3px;
+    text-underline-offset: 4px;
+}
+
+/* Active (while clicking): Snap the underline closer */
+a:active {
+    text-decoration-thickness: 2px;
+    text-underline-offset: 1px;
+}
+
+/* Keyboard accessibility: Keep a clear focus ring */
+a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 3px;
+    border-radius: 2px;
+}
+
+
+/*
+General formatting for buttons
+ */
+
+button {
+    /* Reset & Typography */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-family: inherit;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    /* Spacing & Shape */
+    padding: 0.65rem 1.25rem;
+    border: none;
+    border-radius: 8px;
+
+    /* Colors & Effects */
+    background-color: #2563eb;
+    color: #ffffff;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+/* Hover State */
+button:hover {
+    background-color: #1d4ed8;
+}
+
+/* Active (Pressed) State */
+button:active {
+    transform: scale(0.98);
+}
+
+/* Keyboard Focus Accessibility */
+button:focus-visible {
+    outline: 3px solid #93c5fd;
+    outline-offset: 2px;
+}
+
+/* Disabled State */
+button:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+    opacity: 0.7;
 }

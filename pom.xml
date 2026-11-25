@@ -9,7 +9,9 @@
 
     <!--
       Minum requires a minimum of Java 21
-      for its virtual threads.
+      for its virtual threads.  Java 25
+      is selected as a long-term stable build
+      and has excellent performance and features.
     -->
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -22,6 +24,11 @@
         <!--
           This is the Minum web framework, find its
           code at https://github.com/byronka/minum
+          This one dependency will provide a web server,
+          templating, HTML parsing, and a database.
+
+          It is written minimalistically, and thoroughly
+          tested, so I can use it with confidence.
         -->
         <dependency>
             <groupId>com.renomad</groupId>
@@ -67,7 +74,7 @@
                     </descriptorRefs>
                     <archive>
                         <manifest>
-                            <!-- Defines the entry point of your application -->
+                            <!-- the entry point of the application -->
                             <mainClass>com.renomad.forum.Main</mainClass>
                         </manifest>
                     </archive>
@@ -95,7 +102,10 @@
                 </configuration>
             </plugin>
 
-            <!-- Code coverage for Java -->
+            <!-- Code coverage for Java.
+                 Set to a fairly low percentage as a requirement
+                 to remind me if there is anything mostly untested.
+             -->
             <plugin>
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
@@ -141,10 +151,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.12.0</version>
-                <configuration>
-                    <!-- Optional: prevents build failures on strict HTML tags in Java 8+ -->
-                    <doclint>none</doclint>
-                </configuration>
             </plugin>
 
         </plugins>

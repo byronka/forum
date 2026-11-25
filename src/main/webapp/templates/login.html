@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Login</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/general/main.css" >
+    <meta name="filename" content="/templates/login.html" >
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="/favicon.ico" >
+</head>
+<body>
+<h1>Login</h1>
+
+<form method="POST" action="login">
+    <p>
+    <label>
+        Username: <input required name="username" type="text" maxlength="100" minlength="12">
+    </label>
+    </p>
+    <p>
+    <label>
+        Password: <input required name="password" type="password" maxlength="100" minlength="12">
+    </label>
+    </p>
+    <button type="submit">Login</button>
+</form>
+
+</body>
+</html>

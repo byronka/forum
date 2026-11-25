@@ -4,27 +4,39 @@
     <title>Forum</title>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/general/main.css" >
-    <meta name="filename" content="index.html" >
+    <meta name="filename" content="/templates/index.html" >
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="icon" type="image/png" href="/favicon.ico" >
 </head>
 <body>
-    <h1>Forum</h1>
+<h1>Forum</h1>
 
+<p>
+    Register: <a href="register">here</a>
+</p>
+
+<p>
+    Login: <a href="login">here</a>
+</p>
+
+<form method="POST" action="add_entry">
     <p>
-        Register: <a href="#">here</a>
+        Add an entry: <input required name="new_entry" type="text" maxlength="1000" minlength="1">
     </p>
+    <button type="submit">Add new entry</button>
+</form>
 
+<ol>
+    <li>
+        <span>This is an entry</span>
+    </li>
+    <li>
+        <span>This is an entry</span>
+    </li>
+    <li>
+        <span>This is an entry</span>
+    </li>
+</ol>
 
-    <p>
-        Login: <a href="#">here</a>
-    </p>
-
-    <form method="POST" action="hello">
-        <p>
-            Say hello to <input required name="name" type="text">
-        </p>
-        <button type="submit">Enter</button>
-    </form>
 </body>
 </html>
